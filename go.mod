@@ -1,3 +1,3 @@
-module golangify
+module snippet
 
 go 1.22.2

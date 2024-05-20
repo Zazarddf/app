@@ -2,13 +2,13 @@ package main
 
 import (
 	"fmt"
-	"html/template"
-	"log"
+	"html/template" // новый импорт
+	"log"           // новый импорт
 	"net/http"
 	"strconv"
 )
 
-// Обработчик главной странице.
+// Обработчик главной страницы.
 func home(w http.ResponseWriter, r *http.Request) {
 	if r.URL.Path != "/" {
 		http.NotFound(w, r)
@@ -23,7 +23,7 @@ func home(w http.ResponseWriter, r *http.Request) {
 		"./ui/html/footer.partial.tmpl",
 	}
 
-	// Используем функцию template.ParseFiles() для чтения файлов шаблона.
+	// Используем функцию template.ParseFiles() для чтения файла шаблона.
 	// Если возникла ошибка, мы запишем детальное сообщение ошибки и
 	// используя функцию http.Error() мы отправим пользователю
 	// ответ: 500 Internal Server Error (Внутренняя ошибка на сервере)
@@ -33,7 +33,6 @@ func home(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "Internal Server Error", 500)
 		return
 	}
-
 	// Затем мы используем метод Execute() для записи содержимого
 	// шаблона в тело HTTP ответа. Последний параметр в Execute() предоставляет
 	// возможность отправки динамических данных в шаблон.
@@ -52,15 +51,14 @@ func showSnippet(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	fmt.Fprintf(w, "Отображение выбранной заметки с ID %d...", id)
+	fmt.Fprintf(w, "Отображение определенной заметки с ID %d...", id)
 }
 
-// Обработчик для создания новой заметки.
 func createSnippet(w http.ResponseWriter, r *http.Request) {
 	if r.Method != http.MethodPost {
 		w.Header().Set("Allow", http.MethodPost)
 
-		http.Error(w, "Метод запрещен!", 405)
+		http.Error(w, "Метод не дозволен", 405)
 		return
 	}
 

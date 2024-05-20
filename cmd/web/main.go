@@ -7,7 +7,6 @@ import (
 	"os" // новый импорт
 )
 
-// больше не раб
 func main() {
 	addr := flag.String("addr", ":4000", "Сетевой адрес веб-сервера")
 	flag.Parse()
